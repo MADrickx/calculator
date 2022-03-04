@@ -1,0 +1,59 @@
+.calculator-container {
+  background-color: #fafafa;
+  margin: 1rem 0 0 1rem;
+  border-radius: 1rem;
+  box-sizing: border-box;
+  padding: 1rem;
+}
+
+.recap {
+  background-color: #fafafa;
+  margin: 1rem 1rem 0 1rem;
+  border-radius: 1rem;
+  box-sizing: border-box;
+  padding: 1rem;
+  .recap-container {
+    background-color: white;
+    border: 1px solid lightgray;
+    border-radius: 0.2rem;
+  }
+  .recap-body {
+    padding: 0rem 0rem 0rem 0.6rem !important;
+    margin: 0.6rem;
+    border-left: 1px solid lightgray;
+  }
+  .recap-body-item {
+    font-size: 0.8rem;
+  }
+  .recap-body-item.price-item {
+    border: 1px solid lightgray;
+    padding: 0.5rem;
+    margin: 0.5rem;
+    border-radius: 0.3rem;
+  }
+}
+
+.card-header-delete {
+  max-width: 1rem;
+}
+
+.flex-form {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  .form-cell {
+    flex-basis: 25%;
+    max-width: 25%;
+    padding: 0 1rem;
+    display: flex;
+    flex-direction: column;
+    label {
+      font-size: 0.8rem;
+    }
+  }
+}
+
+.add-version-btn {
+  max-width: 33%;
+  margin: 1rem 1rem;
+}

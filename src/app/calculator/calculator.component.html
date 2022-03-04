@@ -1,0 +1,90 @@
+<div class="split-container d-flex flex-row">
+  <div class="calculator-container w-75">
+    <div *ngFor="let product of products; let i = index">
+      <div class="card mb-5">
+        <div class="card-header d-flex flex-row justify-content-between">
+          <div class="card-header-text">produit {{ i + 1 }}</div>
+          <div class="card-header-delete">
+            <svg-icon
+              src="../../assets/icons/trash.svg"
+              class="mr-2"
+              (click)="deleteProduct(i)"
+            ></svg-icon>
+          </div>
+        </div>
+        <div class="card-body">
+          <form [formGroup]="productFormContainer">
+            <div formArrayName="productForm" class="flex-form">
+              <div class="form-cell">
+                <label for="support-{{ i }}">Support</label>
+                <select
+                  formControlName="support"
+                  name="support"
+                  id="support-{{ i }}"
+                  (change)="supportChange(i)"
+                >
+                  <option disabled selected value=""></option>
+                  <option value="forex-3">Forex - 3mm</option>
+                  <option value="forex-5">Forex - 5mm</option>
+                  <option value="vinyl-classic">vinyl - classic</option>
+                  <option value="bache-500">Bâche - 500g</option>
+                </select>
+              </div>
+              <div class="form-cell">
+                <label for="length-{{ i }}">Longueur<small>(mm)</small></label>
+                <input
+                  type="text"
+                  formControlName="length"
+                  name="length"
+                  id="length-{{ i }}"
+                />
+              </div>
+              <div class="form-cell">
+                <label for="height-{{ i }}">Hauteur<small>(mm)</small></label>
+                <input
+                  type="text"
+                  formControlName="height"
+                  name="height"
+                  id="height-{{ i }}"
+                />
+              </div>
+              <div class="form-cell">
+                <label for="quantity-{{ i }}">Quantité</label>
+                <input
+                  type="text"
+                  formControlName="quantity"
+                  name="quantity"
+                  id="quantity-{{ i }}"
+                />
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="recap w-25">
+    <div *ngFor="let product of products; let i = index">
+      <div class="recap-container card mb-3">
+        <p class="card-header">P.{{ i + 1 }} : {{ product.support }}</p>
+        <div class="recap-body card-body">
+          <div class="recap-body-item">
+            {{ product.length }} X
+            {{ product.height }}
+          </div>
+          <div class="recap-body-item">
+            {{ product.quantity }}
+            exemplaire(s)
+          </div>
+        </div>
+        <div class="recap-body-item price-item">{{ product.price }} €</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<button class="add-version-btn btn btn-primary" (click)="onAddProduct()">
+  <svg-icon src="../../assets/icons/plus.svg" class="mr-2"></svg-icon>
+  version
+</button>

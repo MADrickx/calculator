@@ -1,0 +1,6 @@
+<svg id="btnPrev" xmlns="http://www.w3.org/2000/svg" width="33" height="34" viewBox="0 0 33 34">
+  <g id="ic_chevron">
+    <path id="ic_chevron_Background_Mask_" data-name="ic_chevron (Background/Mask)" d="M0,0H33V-34H0Z" transform="translate(33) rotate(180)" fill="none"/>
+    <path id="Vector" d="M8.25,17l0,0L0,8.5,8.25,0V17Z" transform="translate(12.375 8.5)" fill="rgba(22,22,22,0.19)"/>
+  </g>
+</svg>
