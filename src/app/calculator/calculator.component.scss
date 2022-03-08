@@ -1,4 +1,6 @@
 .calculator-container {
+  display: flex;
+  flex-direction: column;
   background-color: #fafafa;
   margin: 1rem 0 0 1rem;
   border-radius: 1rem;
@@ -56,4 +58,8 @@
 .add-version-btn {
   max-width: 33%;
   margin: 1rem 1rem;
+}
+
+.btn-calculate {
+  justify-self: flex-end;
 }

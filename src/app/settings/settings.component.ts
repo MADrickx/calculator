@@ -1,4 +1,7 @@
+import { ThisReceiver } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
+import { FormArray, FormControl, FormGroup } from '@angular/forms';
+import { SettingsService } from '../services/settings.service';
 
 @Component({
   selector: 'app-settings',
@@ -7,9 +10,68 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SettingsComponent implements OnInit {
 
-  constructor() { }
+  optionSettingsForm = new FormGroup({
+    shinyLaminatePrice : new FormControl(''),
+    matteLaminatePrice : new FormControl(''),
+    grommetsPrice : new FormControl(''),
+    reinforcementsPrice : new FormControl(''),
+  });
+
+  supportSettingsForm = new FormGroup({
+    supportSpec: new FormArray([]),
+  });
+
+  inkPriceForm = new FormGroup({
+    panelInkPrice : new FormControl(''),
+    rollInkPrice : new FormControl(''),
+  });
+
+  constructor(
+    private settingsService : SettingsService
+  ) { }
 
   ngOnInit(): void {
+    this.onAddSupport();
   }
 
+  getSupportOfProducts(): FormArray {
+    return this.supportSettingsForm.get('supportSpec') as FormArray;
+  }
+
+  getSupportFormatOfProducts(i: number): FormArray {
+    return this.getSupportOfProducts().at(i).get('supportFormat') as FormArray;
+  }
+  onAddSupport(){
+    const supportSpec = new FormGroup({
+      supportName: new FormControl(''),
+      supportType: new FormControl(''),
+      supportPrice: new FormControl(''),
+      supportFormat:new FormArray([]),
+    });
+    // this.products.push(productForm.value);
+    this.getSupportOfProducts().push(supportSpec);
+    // this.onAddSupportFormat(this.getSupportOfProducts().length-1);
+  }
+
+  onAddSupportFormat(i: number){
+    const supportFormat = new FormGroup({
+      length: new FormControl(''),
+      height: new FormControl(''),
+      active: new FormControl(false),
+      shinyLaminate : new FormControl(false),
+      matteLaminate : new FormControl(false),
+      grommets : new FormControl(false),
+      reinforcements : new FormControl(false),
+    });
+    this.getSupportFormatOfProducts(i).push(supportFormat);
+    console.log(this.getSupportFormatOfProducts(i).controls)
+  }
+
+  removeSupportFormat(i:number,j:number){
+    this.getSupportFormatOfProducts(i).removeAt(j);
+  }
+
+  onSubmit(){
+    this.settingsService.saveAllSettings(this.inkPriceForm, this.optionSettingsForm, this.supportSettingsForm)
+  }
 }

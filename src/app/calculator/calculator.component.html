@@ -1,27 +1,29 @@
 <div class="split-container d-flex flex-row">
-  <div class="calculator-container w-75">
-    <div *ngFor="let product of products; let i = index">
-      <div class="card mb-5">
-        <div class="card-header d-flex flex-row justify-content-between">
-          <div class="card-header-text">produit {{ i + 1 }}</div>
-          <div class="card-header-delete">
-            <svg-icon
-              src="../../assets/icons/trash.svg"
-              class="mr-2"
-              (click)="deleteProduct(i)"
-            ></svg-icon>
+  <form [formGroup]="productFormContainer" class="w-75">
+    <div formArrayName="productForm" class="calculator-container">
+      <div *ngFor="let product of getLinesOfProducts().controls; let i = index">
+        <div class="card mb-5" [formGroupName]="i">
+          <div class="card-header d-flex flex-row justify-content-between">
+            <div class="card-header-text">produit {{ i + 1 }}</div>
+            <div
+              class="card-header-delete"
+              *ngIf="getLinesOfProducts().length > 1"
+            >
+              <svg-icon
+                src="../../assets/icons/trash.svg"
+                class="mr-2"
+                (click)="deleteProduct(i)"
+              ></svg-icon>
+            </div>
           </div>
-        </div>
-        <div class="card-body">
-          <form [formGroup]="productFormContainer">
-            <div formArrayName="productForm" class="flex-form">
+          <div class="card-body">
+            <div class="flex-form">
               <div class="form-cell">
                 <label for="support-{{ i }}">Support</label>
                 <select
                   formControlName="support"
-                  name="support"
+                  name="support-{{ i }}"
                   id="support-{{ i }}"
-                  (change)="supportChange(i)"
                 >
                   <option disabled selected value=""></option>
                   <option value="forex-3">Forex - 3mm</option>
@@ -35,7 +37,6 @@
                 <input
                   type="text"
                   formControlName="length"
-                  name="length"
                   id="length-{{ i }}"
                 />
               </div>
@@ -44,7 +45,6 @@
                 <input
                   type="text"
                   formControlName="height"
-                  name="height"
                   id="height-{{ i }}"
                 />
               </div>
@@ -53,32 +53,37 @@
                 <input
                   type="text"
                   formControlName="quantity"
-                  name="quantity"
                   id="quantity-{{ i }}"
                 />
               </div>
             </div>
-          </form>
+          </div>
         </div>
       </div>
+      <button class="btn btn-secondary justify-self-end btn-calculate">
+        <svg-icon src="../../assets/icons/money.svg" class="mr-2"></svg-icon>
+        Calculer
+      </button>
     </div>
-  </div>
+  </form>
 
   <div class="recap w-25">
-    <div *ngFor="let product of products; let i = index">
+    <div *ngFor="let product of getLinesOfProducts().controls; let i = index">
       <div class="recap-container card mb-3">
-        <p class="card-header">P.{{ i + 1 }} : {{ product.support }}</p>
+        <p class="card-header">P.{{ i + 1 }} : {{ product.value.support }}</p>
         <div class="recap-body card-body">
           <div class="recap-body-item">
-            {{ product.length }} X
-            {{ product.height }}
+            {{ product.value.length }} X
+            {{ product.value.height }}
           </div>
           <div class="recap-body-item">
-            {{ product.quantity }}
+            {{ product.value.quantity }}
             exemplaire(s)
           </div>
         </div>
-        <div class="recap-body-item price-item">{{ product.price }} €</div>
+        <div class="recap-body-item price-item">
+          {{ product.value.price }} €
+        </div>
       </div>
     </div>
   </div>

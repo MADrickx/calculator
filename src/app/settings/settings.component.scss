@@ -1,0 +1,109 @@
+.heading-2 {
+  margin: 0.6rem 0;
+  font-weight: 200;
+  font-size: 1.5rem;
+}
+
+.euro {
+  &::after {
+    width: 1rem;
+    height: 1rem;
+    content: "€";
+    display: block;
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+  }
+}
+.euro-input {
+  padding-right: 1rem;
+  display: flex;
+  input {
+    width: 80%;
+    margin: 1rem 0.5rem 1rem 0;
+    &:last-of-type {
+      margin: 1rem 0 1rem 0.5;
+    }
+  }
+  &:last-of-type {
+    padding-right: 0;
+  }
+}
+
+.form-cell-settings {
+  flex-basis: 50%;
+  max-width: 50%;
+}
+
+.option-inputs {
+  display: flex;
+  flex-direction: column;
+  input {
+    max-width: 100%;
+    margin: 1rem 0;
+  }
+}
+
+.price-box {
+  font-size: 0.8rem;
+  box-sizing: border-box;
+  padding: 0.5rem;
+  border: 1px solid lightgray;
+  border-radius: 0.3rem;
+  margin-left: 1rem;
+}
+
+.product-listings {
+  tr,
+  th {
+    max-width: 25%;
+    text-align: center;
+    input {
+      width: 95%;
+    }
+    svg {
+      min-width: 1rem;
+      max-width: 1rem;
+      cursor: pointer;
+    }
+  }
+  tbody {
+    border-bottom: 1px solid lightgrey;
+    &:last-of-type {
+      border: none;
+    }
+    td {
+      margin: 0.5rem 0;
+      padding: 0.5rem 0;
+    }
+  }
+}
+
+.options {
+  .option-item {
+    display: flex;
+    flex-direction: row;
+    input {
+      width: 0.8rem;
+    }
+  }
+}
+
+.support-options {
+  margin: 0 0 0 1rem;
+  padding: 0 0 0 1rem;
+  border-left: 1px solid lightgray;
+  h3 {
+    font-size: 1.2rem;
+  }
+  label {
+    margin-left: 1rem;
+    font-size: 0.7rem;
+  }
+}
+
+.roll-container {
+  form {
+    max-width: 65%;
+  }
+}

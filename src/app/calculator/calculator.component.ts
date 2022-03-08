@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ComponentFactoryResolver, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
 import {FormControl, FormGroup, Validators, FormArray} from '@angular/forms';
 
 @Component({
@@ -7,7 +7,12 @@ import {FormControl, FormGroup, Validators, FormArray} from '@angular/forms';
   styleUrls: ['./calculator.component.scss']
 })
 export class CalculatorComponent implements OnInit {
-  constructor() { }
+
+  constructor(
+
+  ) {
+
+  }
   products:any[] = [];
   productFormContainer = new FormGroup({
     productForm: new FormArray([]),
@@ -15,6 +20,11 @@ export class CalculatorComponent implements OnInit {
 
   ngOnInit(): void {
     this.onAddProduct();
+  }
+
+  close(): void {
+    window.scroll(0, 0);
+
   }
 
   supportChange(i:number){
@@ -33,7 +43,8 @@ export class CalculatorComponent implements OnInit {
       quantity: new FormControl(''),
       price: new FormControl('')
     });
-    this.products.push(productForm.value);
+    // this.products.push(productForm.value);
+    this.getLinesOfProducts().push(productForm)
   }
 
   getLinesOfProducts(): FormArray {
@@ -41,6 +52,6 @@ export class CalculatorComponent implements OnInit {
   }
 
   deleteProduct(i:number){
-    this.products.splice(i,1);
+    this.getLinesOfProducts()?.removeAt(i);
   }
 }

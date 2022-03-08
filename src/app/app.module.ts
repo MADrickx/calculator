@@ -11,6 +11,9 @@ import { CalculatorComponent } from './calculator/calculator.component';
 import {AngularSvgIconModule} from 'angular-svg-icon';
 import {FormsModule} from '@angular/forms';
 import {ReactiveFormsModule} from '@angular/forms';
+import { SettingsService } from './services/settings.service';
+import { CalculatorService } from './services/calculator.service';
+import { SettingsAdapter } from './models/Settings.model';
 
 @NgModule({
   declarations: [
@@ -31,7 +34,11 @@ import {ReactiveFormsModule} from '@angular/forms';
     AngularSvgIconModule,
     ReactiveFormsModule
   ],
-  providers: [],
+  providers: [
+    SettingsService,
+    SettingsAdapter,
+    CalculatorService,
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
