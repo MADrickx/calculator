@@ -41,12 +41,8 @@
                 />
               </div>
               <div class="form-cell">
-                <label for="height-{{ i }}">Hauteur<small>(mm)</small></label>
-                <input
-                  type="text"
-                  formControlName="height"
-                  id="height-{{ i }}"
-                />
+                <label for="width-{{ i }}">Hauteur<small>(mm)</small></label>
+                <input type="text" formControlName="width" id="width-{{ i }}" />
               </div>
               <div class="form-cell">
                 <label for="quantity-{{ i }}">Quantité</label>
@@ -74,7 +70,7 @@
         <div class="recap-body card-body">
           <div class="recap-body-item">
             {{ product.value.length }} X
-            {{ product.value.height }}
+            {{ product.value.width }}
           </div>
           <div class="recap-body-item">
             {{ product.value.quantity }}

@@ -19,9 +19,6 @@ export class CalculatorService {
     this.httpOptionsImport = GlobalConstants.httpOptions(token, 'application/json');
   }
 
-
-
-
   getProduct(id: number): Promise<Product> {
     return new Promise<Product>(
       (resolve, reject) => {

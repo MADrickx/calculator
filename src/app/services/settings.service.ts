@@ -39,16 +39,23 @@ export class SettingsService {
     );
   }
 
-  saveAllSettings(form1:FormGroup, form2:FormGroup, form3:FormGroup){
-    const formData1 = form1.value;
-    const formData2 = form2.value;
+  saveAll(form1:any, form2:any, form3:any){
+    const formData1 = form1;
+    const formData2 = form2;
     const formData3 = form3.value;
     const finalForm = {
       'inkPrice' : formData1,
       'optionsPrices' : formData2,
       'supports' : formData3
     }
-    console.log(finalForm);
-
+    if(formData1 !== null && formData1 !== null && formData1 !== null){
+      return this.http.post(
+        this.apiPath + 'support/settings/save',
+        finalForm,
+        this.httpOptions
+      );
+    } else {
+      return
+    }
   }
 }

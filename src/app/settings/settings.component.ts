@@ -56,7 +56,7 @@ export class SettingsComponent implements OnInit {
   onAddSupportFormat(i: number){
     const supportFormat = new FormGroup({
       length: new FormControl(''),
-      height: new FormControl(''),
+      width: new FormControl(''),
       active: new FormControl(false),
       shinyLaminate : new FormControl(false),
       matteLaminate : new FormControl(false),
@@ -72,6 +72,49 @@ export class SettingsComponent implements OnInit {
   }
 
   onSubmit(){
-    this.settingsService.saveAllSettings(this.inkPriceForm, this.optionSettingsForm, this.supportSettingsForm)
+    let inkPrices:any = [];
+    let optionPrices:any = [];
+    if(this.inkPriceForm.get('panelInkPrice')?.value && this.inkPriceForm.get('rollInkPrice')?.value){
+      inkPrices = [
+        {
+          type:'panel',
+          price:this.inkPriceForm.get('panelInkPrice')?.value
+        },
+        {
+          type:'roll',
+          price:this.inkPriceForm.get('rollInkPrice')?.value
+        }
+      ]
+    } else {
+      inkPrices = null
+    }
+    if(this.optionSettingsForm.value !== null){
+      optionPrices = [
+        {
+          type:'shinyLaminate',
+          price:this.optionSettingsForm.get('shinyLaminatePrice')?.value
+        },
+        {
+          type:'matteLaminate',
+          price:this.optionSettingsForm.get('matteLaminatePrice')?.value
+        },
+        {
+          type:'grommets',
+          price:this.optionSettingsForm.get('grommetsPrice')?.value
+        },
+        {
+          type:'reinforcements',
+          price:this.optionSettingsForm.get('reinforcementsPrice')?.value
+        },
+      ]
+    } else {
+      optionPrices = null
+    }
+    console.log(optionPrices)
+    this.settingsService.saveAll(inkPrices, optionPrices, this.supportSettingsForm)?.subscribe(
+      (response:any)=>{
+        console.log(response)
+      }
+    )
   }
 }
