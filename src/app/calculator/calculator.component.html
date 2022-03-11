@@ -26,14 +26,16 @@
                   id="support-{{ i }}"
                 >
                   <option disabled selected value=""></option>
-                  <option value="forex-3">Forex - 3mm</option>
-                  <option value="forex-5">Forex - 5mm</option>
-                  <option value="vinyl-classic">vinyl - classic</option>
-                  <option value="bache-500">Bâche - 500g</option>
+                  <option
+                    *ngFor="let item of supportsItems"
+                    value="{{ item.name }}"
+                  >
+                    {{ item.name }}
+                  </option>
                 </select>
               </div>
               <div class="form-cell">
-                <label for="length-{{ i }}">Longueur<small>(mm)</small></label>
+                <label for="length-{{ i }}">Longueur<small>(cm)</small></label>
                 <input
                   type="text"
                   formControlName="length"
@@ -41,7 +43,7 @@
                 />
               </div>
               <div class="form-cell">
-                <label for="width-{{ i }}">Hauteur<small>(mm)</small></label>
+                <label for="width-{{ i }}">Largeur<small>(cm)</small></label>
                 <input type="text" formControlName="width" id="width-{{ i }}" />
               </div>
               <div class="form-cell">
@@ -56,7 +58,10 @@
           </div>
         </div>
       </div>
-      <button class="btn btn-secondary justify-self-end btn-calculate">
+      <button
+        class="btn btn-secondary justify-self-end btn-calculate"
+        (click)="calculate()"
+      >
         <svg-icon src="../../assets/icons/money.svg" class="mr-2"></svg-icon>
         Calculer
       </button>

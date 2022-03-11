@@ -32,6 +32,61 @@ export class SettingsComponent implements OnInit {
 
   ngOnInit(): void {
     this.onAddSupport();
+
+    this.getSupportsAndPrices();
+  }
+
+  getSupportsAndPrices(){
+    this.settingsService.getSupportsAndPrices().subscribe((response:any)=>{
+      console.log(response);
+      let inks = response.inkPrices;
+      inks.forEach((ink:any) => {
+        if(ink.type === 'panel'){
+          this.inkPriceForm.get('panelInkPrice')?.setValue(ink.price/1000);
+        } else {
+          this.inkPriceForm.get('rollInkPrice')?.setValue(ink.price/1000);
+        }
+      });
+
+
+      let options = response.optionsPrices;
+      options.forEach((option:any) => {
+        if(option.type === 'shinyLaminate'){
+          this.optionSettingsForm.get('shinyLaminatePrice')?.setValue(option.price/1000);
+        } else if (option.type === 'matteLaminate') {
+          this.optionSettingsForm.get('matteLaminatePrice')?.setValue(option.price/1000);
+        } else if (option.type === 'grommets'){
+          this.optionSettingsForm.get('grommetsPrice')?.setValue(option.price/1000);
+        } else {
+          this.optionSettingsForm.get('reinforcementsPrice')?.setValue(option.price/1000);
+        }
+      });
+
+      let supports = response.supports;
+      supports.forEach((support:any, i:number)=>{
+        this.onAddSupport();
+        const lines = this.getSupportOfProducts();
+        if (lines !== null && i !== null) {
+          const line = lines.at(i);
+          line.get('supportName')?.setValue(supports[i].name);
+          line.get('supportType')?.setValue(supports[i].type);
+          line.get('supportPrice')?.setValue(supports[i].price);
+          support.supportLines.forEach((lineInLine:any,j:number)=>{
+            this.onAddSupportFormat(i);
+            console.log(lineInLine)
+            const lines = this.getSupportFormatOfProducts(i);
+            const line = lines.at(j);
+            line.get('active')?.setValue(lineInLine.active);
+            line.get('grommets')?.setValue(lineInLine.grommets);
+            line.get('shinyLaminate')?.setValue(lineInLine.shinyLaminate);
+            line.get('matteLaminate')?.setValue(lineInLine.matteLaminate);
+            line.get('width')?.setValue(lineInLine.width);
+            line.get('length')?.setValue(lineInLine.length);
+            line.get('reinforcements')?.setValue(lineInLine.reinforcements);
+          })
+        }
+      })
+    });
   }
 
   getSupportOfProducts(): FormArray {

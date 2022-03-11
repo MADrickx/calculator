@@ -21,22 +21,11 @@ export class SettingsService {
     this.httpOptionsImport = GlobalConstants.httpOptions(token, 'application/json');
   }
 
-  getSettings(id: number): Promise<Settings> {
-    return new Promise<Settings>(
-      (resolve, reject) => {
-        this.http.get(
-          this.apiPath + 'settings/' + id,
-          this.httpOptions
-        )
-          .toPromise()
-          .then((response: any) => {
-            const client = this.adapter.adapt(response);
-            resolve(client);
-          }, error => {
-            reject(error);
-          });
-      }
-    );
+  getSupportsAndPrices(): any {
+    return this.http.get(
+      this.apiPath + 'support/settings/getSupports',
+        this.httpOptions
+    )
   }
 
   saveAll(form1:any, form2:any, form3:any){

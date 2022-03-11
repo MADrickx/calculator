@@ -1,5 +1,6 @@
 import { Component, ComponentFactoryResolver, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
 import {FormControl, FormGroup, Validators, FormArray} from '@angular/forms';
+import { CalculatorService } from '../services/calculator.service';
 
 @Component({
   selector: 'app-calculator',
@@ -7,24 +8,40 @@ import {FormControl, FormGroup, Validators, FormArray} from '@angular/forms';
   styleUrls: ['./calculator.component.scss']
 })
 export class CalculatorComponent implements OnInit {
-
-  constructor(
-
-  ) {
-
-  }
+  supportsItems:any = [];
   products:any[] = [];
   productFormContainer = new FormGroup({
     productForm: new FormArray([]),
   });
 
+  constructor(
+    private calculatorService : CalculatorService
+  ) {}
+
   ngOnInit(): void {
     this.onAddProduct();
+    this.getSupports();
+  }
+
+  calculate(){
+    this.getLinesOfProducts().controls.forEach((lines:any,index:number)=>{
+      const linesValue = lines.value
+      this.calculatorService.getPrices(linesValue).subscribe((response:any)=>{
+        lines.get('price').setValue(response.price);
+      })
+    })
+  }
+
+  getSupports(){
+    this.calculatorService.getSupports().subscribe((response)=>{
+      //@ts-ignore
+      this.supportsItems.push(response[0]);
+      this.supportsItems=this.supportsItems[0];
+    })
   }
 
   close(): void {
     window.scroll(0, 0);
-
   }
 
   supportChange(i:number){
@@ -39,11 +56,10 @@ export class CalculatorComponent implements OnInit {
     const productForm = new FormGroup({
       support: new FormControl(''),
       length: new FormControl(''),
-      height: new FormControl(''),
+      width: new FormControl(''),
       quantity: new FormControl(''),
       price: new FormControl('')
     });
-    // this.products.push(productForm.value);
     this.getLinesOfProducts().push(productForm)
   }
 

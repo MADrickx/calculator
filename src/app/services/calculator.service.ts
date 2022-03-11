@@ -7,33 +7,27 @@ import { Product, ProductAdapter } from '../models/Product.model';
 
 @Injectable()
 export class CalculatorService {
-  private products: Product[] = [];
-  clientSubject = new Subject<Product[]>();
   apiPath = GlobalConstants.apiPath;
   httpOptions = GlobalConstants.httpOptions();
   httpOptionsImport = GlobalConstants.httpOptions();
 
-  constructor(private http: HttpClient,private adapter: ProductAdapter) {
+  constructor(private http:HttpClient) {
     const token = sessionStorage.getItem('token');
     this.httpOptions = GlobalConstants.httpOptions(token);
     this.httpOptionsImport = GlobalConstants.httpOptions(token, 'application/json');
   }
+  getSupports(){
+    return this.http.get(
+      this.apiPath + 'support/getSupports',
+        this.httpOptions
+    )
+  }
 
-  getProduct(id: number): Promise<Product> {
-    return new Promise<Product>(
-      (resolve, reject) => {
-        this.http.get(
-          this.apiPath + 'product/' + id,
-          this.httpOptions
-        )
-          .toPromise()
-          .then((response: any) => {
-            const client = this.adapter.adapt(response);
-            resolve(client);
-          }, error => {
-            reject(error);
-          });
-      }
-    );
+  getPrices(values:any){
+    return this.http.post(
+      this.apiPath + 'support/getPrices',
+        values,
+        this.httpOptions
+    )
   }
 }
