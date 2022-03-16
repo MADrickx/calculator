@@ -61,5 +61,15 @@
 }
 
 .btn-calculate {
-  justify-self: flex-end;
+  width: 72%;
+  box-sizing: border-box;
+  margin: 1rem 0 0 1rem;
+}
+
+.form-cell-options {
+  .options {
+    input {
+      margin-right: 0.5rem;
+    }
+  }
 }

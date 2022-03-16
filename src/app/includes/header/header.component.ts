@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnChanges, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 
 @Component({
@@ -8,8 +8,8 @@ import {Router} from '@angular/router';
 })
 export class HeaderComponent implements OnInit {
   title="Calculateur de prix";
-
-  ngOnInit(): void {
-  }
+  returnButton:boolean=false;
+  constructor(private router:Router){}
+  ngOnInit(): void {}
 
 }

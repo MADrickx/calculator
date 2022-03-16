@@ -42,48 +42,44 @@
           <form [formGroup]="optionSettingsForm">
             <div class="flex-form w-100">
               <div class="row">
-                <div class="col-6 option-inputs">
+                <div class="col-3 option-inputs">
                   <label for="shinyLaminatePrice">Laminat brillant</label>
-                  <div class="euro-input position-relative">
+                  <div class="position-relative">
                     <input
                       type="number"
                       id="shinyLaminatePrice"
                       formControlName="shinyLaminatePrice"
                     />
-                    <span class="euro"></span>
                   </div>
                 </div>
-                <div class="col-6 option-inputs">
+                <div class="col-3 option-inputs">
                   <label for="matteLaminatePrice">Laminat mat</label>
-                  <div class="euro-input position-relative">
+                  <div class="position-relative">
                     <input
                       type="number"
                       id="matteLaminatePrice"
                       formControlName="matteLaminatePrice"
                     />
-                    <span class="euro"></span>
                   </div>
                 </div>
-                <div class="col-6 option-inputs">
+                <div class="col-3 option-inputs">
                   <label for="grommetsPrice">Oeillets</label>
-                  <div class="euro-input position-relative">
+                  <div class="position-relative">
                     <input
                       type="number"
                       id="grommetsPrice"
                       formControlName="grommetsPrice"
                     />
-                    <span class="euro"></span>
                   </div>
                 </div>
-                <div class="col-6 option-inputs">
+                <div class="col-3 option-inputs">
                   <label for="reinforcementsPrice">Renforts</label>
-                  <div class="euro-input position-relative">
+                  <div class="position-relative">
                     <input
                       type="number"
                       id="reinforcementsPrice"
                       formControlName="reinforcementsPrice"
                     />
-                    <span class="euro"></span>
                   </div>
                 </div>
               </div>
@@ -130,6 +126,17 @@
                 id="productPrice-{{ i }}"
                 formControlName="supportPrice"
               />
+            </div>
+
+            <div
+              *ngIf="getSupportOfProducts().controls.length > 1"
+              class="card-header-delete w-25"
+            >
+              <svg-icon
+                src="../../assets/icons/trash.svg"
+                class="mr-2"
+                (click)="removeSupport(i)"
+              ></svg-icon>
             </div>
           </div>
           <div class="card-body">

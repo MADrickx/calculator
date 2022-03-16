@@ -122,6 +122,10 @@ export class SettingsComponent implements OnInit {
     console.log(this.getSupportFormatOfProducts(i).controls)
   }
 
+  removeSupport(i:number){
+    this.getSupportOfProducts().removeAt(i);
+  }
+
   removeSupportFormat(i:number,j:number){
     this.getSupportFormatOfProducts(i).removeAt(j);
   }

@@ -25,7 +25,7 @@ export class CalculatorService {
 
   getPrices(values:any){
     return this.http.post(
-      this.apiPath + 'support/getPrices',
+      this.apiPath + 'price/getPrices',
         values,
         this.httpOptions
     )

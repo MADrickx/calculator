@@ -24,6 +24,7 @@
                   formControlName="support"
                   name="support-{{ i }}"
                   id="support-{{ i }}"
+                  (change)="onItemSelection(i)"
                 >
                   <option disabled selected value=""></option>
                   <option
@@ -34,7 +35,14 @@
                   </option>
                 </select>
               </div>
-              <div class="form-cell">
+              <div
+                *ngIf="
+                  getLinesOfProducts().controls[i].get('type')?.value ===
+                    'panel' ||
+                  getLinesOfProducts().controls[i].get('type')?.value === 'roll'
+                "
+                class="form-cell"
+              >
                 <label for="length-{{ i }}">Longueur<small>(cm)</small></label>
                 <input
                   type="text"
@@ -42,11 +50,25 @@
                   id="length-{{ i }}"
                 />
               </div>
-              <div class="form-cell">
+              <div
+                *ngIf="
+                  getLinesOfProducts().controls[i].get('type')?.value ===
+                    'panel' ||
+                  getLinesOfProducts().controls[i].get('type')?.value === 'roll'
+                "
+                class="form-cell"
+              >
                 <label for="width-{{ i }}">Largeur<small>(cm)</small></label>
                 <input type="text" formControlName="width" id="width-{{ i }}" />
               </div>
-              <div class="form-cell">
+              <div
+                *ngIf="
+                  getLinesOfProducts().controls[i].get('type')?.value ===
+                    'panel' ||
+                  getLinesOfProducts().controls[i].get('type')?.value === 'roll'
+                "
+                class="form-cell"
+              >
                 <label for="quantity-{{ i }}">Quantité</label>
                 <input
                   type="text"
@@ -54,16 +76,52 @@
                   id="quantity-{{ i }}"
                 />
               </div>
+              <div
+                *ngIf="
+                  getLinesOfProducts().controls[i].get('type')?.value === 'roll'
+                "
+                class="form-cell form-cell-options"
+              >
+                <div class="options">
+                  <input
+                    type="checkbox"
+                    formControlName="shinyLaminate"
+                    id="shinyLaminate-{{ i }}"
+                  />
+                  <label for="shinyLaminate-{{ i }}">Laminat brillant</label>
+                </div>
+                <div class="options">
+                  <input
+                    type="checkbox"
+                    formControlName="matteLaminate"
+                    id="matteLaminate-{{ i }}"
+                  />
+                  <label for="matteLaminate-{{ i }}">Laminat matte</label>
+                </div>
+                <div class="options">
+                  <input
+                    type="checkbox"
+                    formControlName="grommets"
+                    id="grommets-{{ i }}"
+                  />
+                  <label for="grommets-{{ i }}">oeillets</label>
+                </div>
+                <div class="options">
+                  <input
+                    type="checkbox"
+                    formControlName="reinforcements"
+                    id="reinforcements-{{ i }}"
+                  />
+                  <label for="reinforcements-{{ i }}">renforts</label>
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </div>
-      <button
-        class="btn btn-secondary justify-self-end btn-calculate"
-        (click)="calculate()"
-      >
-        <svg-icon src="../../assets/icons/money.svg" class="mr-2"></svg-icon>
-        Calculer
+      <button class="add-version-btn btn btn-primary" (click)="onAddProduct()">
+        <svg-icon src="../../assets/icons/plus.svg" class="mr-2"></svg-icon>
+        version
       </button>
     </div>
   </form>
@@ -90,7 +148,14 @@
   </div>
 </div>
 
-<button class="add-version-btn btn btn-primary" (click)="onAddProduct()">
-  <svg-icon src="../../assets/icons/plus.svg" class="mr-2"></svg-icon>
-  version
+<button
+  [disabled]="
+    getLinesOfProducts().controls[0].get('quantity')?.value === '' ||
+    getLinesOfProducts().controls[0].get('quantity')?.value === null
+  "
+  class="btn btn-secondary btn-calculate"
+  (click)="calculate()"
+>
+  <svg-icon src="../../assets/icons/money.svg" class="mr-2"></svg-icon>
+  Calculer
 </button>

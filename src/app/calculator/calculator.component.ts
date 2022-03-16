@@ -23,10 +23,23 @@ export class CalculatorComponent implements OnInit {
     this.getSupports();
   }
 
+  onItemSelection(i:number){
+    let productname = this.getLinesOfProducts().controls[i].get('support')?.value;
+    let productType;
+    this.supportsItems.forEach((item:any)=>{
+      if(item.name === productname){
+        productType = item.type;
+      }
+    });
+    this.getLinesOfProducts().controls[i].get('type')?.setValue(productType);
+    console.log(this.getLinesOfProducts().controls)
+  }
+
   calculate(){
     this.getLinesOfProducts().controls.forEach((lines:any,index:number)=>{
       const linesValue = lines.value
       this.calculatorService.getPrices(linesValue).subscribe((response:any)=>{
+        console.log(response);
         lines.get('price').setValue(response.price);
       })
     })
@@ -46,7 +59,6 @@ export class CalculatorComponent implements OnInit {
 
   supportChange(i:number){
     const productLines = this.getLinesOfProducts();
-    console.log(productLines)
     if(productLines.controls[i].get('support')?.value){
       this.products[i].support = productLines.controls[i].get('support')?.value;
     }
@@ -58,7 +70,12 @@ export class CalculatorComponent implements OnInit {
       length: new FormControl(''),
       width: new FormControl(''),
       quantity: new FormControl(''),
-      price: new FormControl('')
+      price: new FormControl(''),
+      type: new FormControl(''),
+      shinyLaminate : new FormControl(false),
+      matteLaminate : new FormControl(false),
+      grommets : new FormControl(false),
+      reinforcements : new FormControl(false),
     });
     this.getLinesOfProducts().push(productForm)
   }

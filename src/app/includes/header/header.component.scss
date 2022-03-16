@@ -94,3 +94,17 @@
     border-radius: 0.625rem;
   }
 }
+
+h1 {
+  a {
+    &:link,
+    &:visited,
+    &:focus,
+    &:active,
+    &:hover {
+      font-style: none;
+      text-decoration: none;
+      color: #555555;
+    }
+  }
+}
