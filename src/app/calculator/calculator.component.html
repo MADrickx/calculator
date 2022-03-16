@@ -111,6 +111,12 @@
                     type="checkbox"
                     formControlName="grommets"
                     id="grommets-{{ i }}"
+                    [disabled]="
+                      getLinesOfProducts().controls[i].get('matteLaminate')
+                        ?.value === true ||
+                      getLinesOfProducts().controls[i].get('shinyLaminate')
+                        ?.value === true
+                    "
                   />
                   <label for="grommets-{{ i }}">oeillets</label>
                 </div>
@@ -119,6 +125,12 @@
                     type="checkbox"
                     formControlName="reinforcements"
                     id="reinforcements-{{ i }}"
+                    [disabled]="
+                      getLinesOfProducts().controls[i].get('matteLaminate')
+                        ?.value === true ||
+                      getLinesOfProducts().controls[i].get('shinyLaminate')
+                        ?.value === true
+                    "
                   />
                   <label for="reinforcements-{{ i }}">renforts</label>
                 </div>
