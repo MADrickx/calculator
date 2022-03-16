@@ -87,6 +87,10 @@
                     type="checkbox"
                     formControlName="shinyLaminate"
                     id="shinyLaminate-{{ i }}"
+                    [disabled]="
+                      getLinesOfProducts().controls[i].get('matteLaminate')
+                        ?.value === true
+                    "
                   />
                   <label for="shinyLaminate-{{ i }}">Laminat brillant</label>
                 </div>
@@ -95,6 +99,10 @@
                     type="checkbox"
                     formControlName="matteLaminate"
                     id="matteLaminate-{{ i }}"
+                    [disabled]="
+                      getLinesOfProducts().controls[i].get('shinyLaminate')
+                        ?.value === true
+                    "
                   />
                   <label for="matteLaminate-{{ i }}">Laminat matte</label>
                 </div>
