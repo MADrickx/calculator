@@ -1,6 +1,0 @@
-<svg id="hamburgermenu" xmlns="http://www.w3.org/2000/svg" width="46" height="46" viewBox="0 0 46 46">
-  <path id="background" d="M8,0H38a8,8,0,0,1,8,8V38a8,8,0,0,1-8,8H8a8,8,0,0,1-8-8V8A8,8,0,0,1,8,0Z" fill="none"/>
-  <path id="_01" data-name="01" d="M1.5,0h23a1.5,1.5,0,0,1,0,3H1.5a1.5,1.5,0,0,1,0-3Z" transform="translate(10 14)"/>
-  <path id="_02" data-name="02" d="M1.5,0h23a1.5,1.5,0,0,1,0,3H1.5a1.5,1.5,0,0,1,0-3Z" transform="translate(10 22)"/>
-  <path id="_03" data-name="03" d="M1.5,0h23a1.5,1.5,0,0,1,0,3H1.5a1.5,1.5,0,0,1,0-3Z" transform="translate(10 30)"/>
-</svg>
