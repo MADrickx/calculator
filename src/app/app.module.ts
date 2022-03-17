@@ -14,6 +14,7 @@ import {ReactiveFormsModule} from '@angular/forms';
 import { SettingsService } from './services/settings.service';
 import { CalculatorService } from './services/calculator.service';
 import { SettingsAdapter } from './models/Settings.model';
+import { IonicModule } from '@ionic/angular';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { SettingsAdapter } from './models/Settings.model';
     AppRoutingModule,
     NgbModule,
     AngularSvgIconModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    IonicModule.forRoot()
   ],
   providers: [
     SettingsService,

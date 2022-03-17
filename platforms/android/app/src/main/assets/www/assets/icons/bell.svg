@@ -1,0 +1,5 @@
+<svg id="bell_1" data-name="bell 1" xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 28 28">
+  <path id="bell_1_Background_Mask_" data-name="bell 1 (Background/Mask)" d="M0,0H28V28H0Z" fill="none"/>
+  <path id="Vector" d="M21,13.647V9.333a9.333,9.333,0,1,0-18.667,0v4.314L.2,16.853a1.168,1.168,0,0,0,.971,1.814h21a1.168,1.168,0,0,0,.971-1.814h0Z" transform="translate(2.334 2.333)"/>
+  <path id="Vector-2" data-name="Vector" d="M7.372,2.524A4.657,4.657,0,0,0,9.03,0H0A4.657,4.657,0,0,0,1.658,2.524,4.657,4.657,0,0,0,4.515,3.5h0A4.657,4.657,0,0,0,7.372,2.524Z" transform="translate(9.485 22.167)"/>
+</svg>
