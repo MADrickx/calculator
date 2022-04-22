@@ -1,4 +1,4 @@
-@import 'https://fonts.googleapis.com/icon?family=Material+Icons';
+@import "https://fonts.googleapis.com/icon?family=Material+Icons";
 
 #loader {
   position: absolute;
@@ -66,4 +66,10 @@
       }
     }
   }
+}
+
+.overflowing {
+  overflow-y: scroll;
+  height: calc(100vh - 90px);
+  padding-bottom: 2rem;
 }
