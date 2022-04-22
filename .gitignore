@@ -45,3 +45,4 @@ testem.log
 .DS_Store
 Thumbs.db
 calculator-win32-x64
+calculator-darwin-x64
