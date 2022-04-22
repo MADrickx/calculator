@@ -1,8 +1,0 @@
-<svg id="grid_1" data-name="grid 1" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-  <path id="grid_1_Background_Mask_" data-name="grid 1 (Background/Mask)" d="M0,0H24V24H0Z" fill="none"/>
-  <g id="grid_layout_18" data-name="grid layout 18" transform="translate(3 3)">
-    <path id="Vector" d="M18,0V4.5H0V0Z" transform="translate(0 6.75)"/>
-    <path id="Vector-2" data-name="Vector" d="M.439,4.811A1.5,1.5,0,0,0,1.5,5.25h15A1.5,1.5,0,0,0,18,3.75V0H0V3.75A1.5,1.5,0,0,0,.439,4.811Z" transform="translate(0 12.75)"/>
-    <path id="Vector-3" data-name="Vector" d="M1.5,0A1.5,1.5,0,0,0,0,1.5V5.25H18V1.5A1.5,1.5,0,0,0,16.5,0H1.5Z"/>
-  </g>
-</svg>
