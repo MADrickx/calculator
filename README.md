@@ -1,7 +1,11 @@
 # calculator
 
-This is an api for a client's price calculator based on set prices chosen by the client, per material, per size, 
+This is a client price calculator based on set prices chosen by the client, per material and per size.
 
 ## Technology used
 
-Symphony 6, API routes
+Angular 13, API Routes, 
+
+### api
+
+symphony 6, API routes
